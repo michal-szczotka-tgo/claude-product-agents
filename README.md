@@ -30,22 +30,26 @@ Commands are immediately available in Claude Code as `/command-name`. No restart
 
 ## Pipeline Overview
 
+See [WORKFLOW.md](WORKFLOW.md) for the full Mermaid diagram.
+
 ```
-DISCOVERY
-  /cto-partner ──► /product-doc ──► /ux-review ──► /figma-prototype
-       │                                │
-       └── Step 4: /explore             └── Step 5: verify spec vs prototype
-                │
-                ▼
+DISCOVERY  (/cto-partner orchestrates)
+  ├── /product-doc      → PRD on Notion
+  ├── /ux-review        → UX gap analysis
+  │     └── /figma-prototype  → Figma plugin (if approved)
+  └── /explore          → codebase analysis → open questions table
+
 PLANNING
-  /create-plan ──► /create-jira-issue ──► /refinement-prep ──► /handoff-to-implementation
+  /create-plan → /create-jira-issue → /refinement-prep → /handoff-to-implementation
 
 EXECUTION
-  /jira-to-code ──► /execute ──► /create-pr ──► /review ──► /post-refinement
+  /jira-to-code → /execute → /create-pr → /review → /post-refinement
+
+QUICK PATHS  (bypass discovery)
+  /slack-to-jira · /create-jira-issue
 
 UTILITIES
-  /slack-to-jira   /create-jira-issue   /peer-review   /db-explore
-  /learning-opportunity   /document   /keybindings-help
+  /learning-opportunity · /document · /keybindings-help · /db-explore · /peer-review
 ```
 
 ---
